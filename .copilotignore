@@ -1,0 +1,4 @@
+# Ignore video series archive folders (Part 1, Part 2, Part 3, etc.)
+# These contain snapshots of end results per episode and should not
+# influence Copilot suggestions or chat context.
+Part */
