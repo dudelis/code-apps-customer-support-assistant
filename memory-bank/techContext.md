@@ -1,0 +1,49 @@
+# Tech Context
+
+## Stack
+
+| Layer | Choice | Notes |
+|-------|--------|-------|
+| Framework | React 18 | Functional components + hooks only |
+| Language | TypeScript | Strict mode; no `any` |
+| Build tool | Vite | Fast HMR in dev; optimised bundle for prod |
+| UI library | Fluent UI v9 (`@fluentui/react-components`) | Microsoft design system |
+| Platform | Power Apps Code Apps | Deployed via PAC CLI |
+| Data | Dataverse Web API | `/api/data/vN.N/` |
+| Automation | Power Automate | HTTP-triggered flows |
+| AI | Copilot Studio | Direct Line channel |
+
+## Dev Commands
+
+```bash
+npm install        # install dependencies
+npm run dev        # start local dev server (Vite)
+npm run build      # production build
+npm run lint       # ESLint
+pac pages upload   # deploy to Power Apps (exact command confirmed per part)
+```
+
+## Constraints
+
+- Must run inside the Power Apps iframe sandbox
+- Authentication is provided by Power Apps — no custom auth code
+- Web API calls use the ambient session token from Power Apps; no extra auth headers needed in production
+- PAC CLI must be authenticated to the target environment before deployment
+
+## Key Dependencies
+
+```json
+{
+  "@fluentui/react-components": "^9.x",
+  "react": "^18.x",
+  "react-dom": "^18.x"
+}
+```
+
+## Environment Variables
+
+Defined in `.env.local` (not committed):
+
+```
+VITE_DATAVERSE_URL=https://<org>.crm.dynamics.com
+```
