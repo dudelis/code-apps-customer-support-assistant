@@ -78,16 +78,36 @@ claude --version
 
 ---
 
-## 6. GitHub Copilot (VS Code)
+## 6. GitHub Copilot CLI
 
-AI coding assistant built into VS Code.
+AI coding assistant that runs in the terminal as the `copilot` command.
 
-Install the extension: [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+Requires a GitHub account with an active Copilot subscription (or free tier).
 
-- Requires a GitHub account with an active Copilot subscription (or free tier).
-- Sign in via VS Code: `Ctrl+Shift+P` → **GitHub Copilot: Sign In**
+Install via winget:
 
-Also install the chat extension: [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+```
+winget install GitHub.Copilot
+```
+
+Restart your shell after install, then verify:
+
+```
+copilot --version
+```
+
+Sign in (one-time):
+
+```
+copilot auth login
+```
+
+Common usage:
+
+```
+copilot suggest "delete all node_modules folders recursively"
+copilot explain "git rebase -i HEAD~3"
+```
 
 ---
 
@@ -124,10 +144,16 @@ Docs: https://docs.github.com/en/copilot/customizing-copilot/adding-repository-c
 
 ---
 
-## 8. Power Platform Skills (for Copilot agent mode)
+## 8. Optional: Power Platform Skills (for Copilot agent mode)
 
 Add Power Platform skills to enhance Copilot agent capabilities for Power Apps / Dataverse work.
 
 Repo: https://github.com/microsoft/power-platform-skills
 
 ---
+
+## 9. Optional: Claude Code Memory Bank
+
+Create a `memory-bank.md` in the project root to persist context across Claude sessions (architecture decisions, current state, known issues).
+
+Claude can read and update this file during agentic sessions to maintain continuity.
