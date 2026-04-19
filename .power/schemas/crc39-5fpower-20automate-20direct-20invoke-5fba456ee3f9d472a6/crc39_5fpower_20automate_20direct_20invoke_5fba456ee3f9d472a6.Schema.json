@@ -1,0 +1,251 @@
+{
+  "name": "shared_crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6",
+  "id": "/providers/Microsoft.PowerApps/apis/shared_crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6",
+  "type": "Microsoft.PowerApps/apis",
+  "properties": {
+    "xrmConnectorId": "74c13521-d497-4422-ade7-cd57c370d2af",
+    "displayName": "Power Automate Direct Invoke",
+    "iconUri": "https://defaulticons.powerapps.com/defaulticons/api-dedicated.png",
+    "iconBrandColor": "#007ee5",
+    "contact": {},
+    "license": {},
+    "apiEnvironment": "Shared",
+    "isCustomApi": true,
+    "blobUrisAreProxied": false,
+    "connectionParameters": {
+      "token": {
+        "type": "oauthSetting",
+        "oAuthSettings": {
+          "identityProvider": "aad",
+          "clientId": "22096dd6-2dd5-4c8b-a26f-8a615ae94a8e",
+          "scopes": [
+            "https://service.flow.microsoft.com//.default"
+          ],
+          "redirectMode": "GlobalPerConnector",
+          "redirectUrl": "https://global.consent.azure-apim.net/redirect/crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6",
+          "properties": {
+            "IsFirstParty": "False",
+            "AzureActiveDirectoryResourceId": "https://service.flow.microsoft.com/",
+            "IsOnbehalfofLoginSupported": true
+          },
+          "customParameters": {
+            "LoginUri": {
+              "value": "https://login.microsoftonline.com"
+            },
+            "TenantId": {
+              "value": "common"
+            },
+            "ResourceUri": {
+              "value": "https://service.flow.microsoft.com/"
+            },
+            "EnableOnbehalfOfLogin": {
+              "value": "false"
+            }
+          }
+        },
+        "uiDefinition": {
+          "displayName": "OAuth Connection",
+          "description": "OAuth Connection",
+          "constraints": {
+            "required": "true",
+            "hidden": "false"
+          }
+        }
+      },
+      "token:TenantId": {
+        "type": "string",
+        "metadata": {
+          "sourceType": "AzureActiveDirectoryTenant"
+        },
+        "uiDefinition": {
+          "constraints": {
+            "required": "false",
+            "hidden": "true"
+          }
+        }
+      }
+    },
+    "swagger": {
+      "swagger": "2.0",
+      "info": {
+        "title": "Power Automate Direct Invoke",
+        "description": "Custom connector for invoking a Power Automate flow via direct trigger endpoint.",
+        "version": "1.0"
+      },
+      "host": "f0c1817c-eed6-edee-9857-661c7b8d6e0e.08.custom.firstrelease.azure-apihub.net",
+      "basePath": "/apim/crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6",
+      "schemes": [
+        "https",
+        "http"
+      ],
+      "consumes": [
+        "application/json"
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "paths": {
+        "/{connectionId}/invoke": {
+          "post": {
+            "summary": "Invoke flow",
+            "description": "Invokes the target Power Automate flow.",
+            "operationId": "invoke",
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "api-version",
+                "in": "query",
+                "required": true,
+                "type": "string",
+                "default": "1"
+              },
+              {
+                "name": "body",
+                "in": "body",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "input1": {
+                      "type": "string"
+                    },
+                    "input2": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success",
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              },
+              "202": {
+                "description": "Accepted",
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              },
+              "default": {
+                "description": "Error",
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "securityDefinitions": {
+        "oauth2-auth": {
+          "type": "oauth2",
+          "flow": "accessCode",
+          "tokenUrl": "https://login.windows.net/common/oauth2/authorize",
+          "scopes": {
+            "https://service.flow.microsoft.com//.default": "https://service.flow.microsoft.com//.default"
+          },
+          "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+      },
+      "security": [
+        {
+          "oauth2-auth": [
+            "https://service.flow.microsoft.com//.default"
+          ]
+        }
+      ],
+      "x-ms-connector-metadata": [
+        {
+          "propertyName": "Website",
+          "propertyValue": "https://make.powerautomate.com"
+        }
+      ]
+    },
+    "runtimeUrls": [
+      "https://f0c1817c-eed6-edee-9857-661c7b8d6e0e.08.custom.firstrelease.azure-apihub.net/apim/crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6",
+      "http://f0c1817c-eed6-edee-9857-661c7b8d6e0e.08.custom.firstrelease.azure-apihub.net/apim/crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6"
+    ],
+    "primaryRuntimeUrl": "https://f0c1817c-eed6-edee-9857-661c7b8d6e0e.08.custom.firstrelease.azure-apihub.net/apim/crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6",
+    "doNotUseApiHubNetRuntimeUrl": "https://f0c1817c-eed6-edee-9857-661c7b8d6e0e.08.custom.firstrelease.azure-apihub.net/apim/crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6",
+    "metadata": {
+      "source": "powerapps-user-defined",
+      "brandColor": "#007ee5",
+      "contact": {},
+      "license": {},
+      "publisherUrl": null,
+      "serviceUrl": null,
+      "documentationUrl": null,
+      "environmentName": "f0c1817c-eed6-edee-9857-661c7b8d6e0e",
+      "xrmConnectorId": "74c13521-d497-4422-ade7-cd57c370d2af",
+      "almMode": "Solution",
+      "parameters": {
+        "host": "@environmentVariables(\"crc39_hostUrl\")",
+        "basePath": "/@environmentVariables(\"crc39_basePath\")",
+        "backendService": {
+          "serviceUrl": "https://@environmentVariables(\"crc39_hostUrl\")/@environmentVariables(\"crc39_basePath\")"
+        }
+      },
+      "useNewApimVersion": "True",
+      "createdBy": "{\"id\":\"95e24379-3102-4028-bfda-ecc54d92b9c9\",\"displayName\":\"Darth Sidious\",\"email\":\"Darth.Sidious@fallenorder.onmicrosoft.com\",\"type\":\"User\",\"tenantId\":\"1e7886bb-4ad8-4924-b559-29c5f5fea8f5\",\"userPrincipalName\":\"Darth.Sidious@fallenorder.onmicrosoft.com\"}",
+      "modifiedBy": "{\"id\":\"95e24379-3102-4028-bfda-ecc54d92b9c9\",\"displayName\":\"Darth Sidious\",\"email\":\"Darth.Sidious@fallenorder.onmicrosoft.com\",\"type\":\"User\",\"tenantId\":\"1e7886bb-4ad8-4924-b559-29c5f5fea8f5\",\"userPrincipalName\":\"Darth.Sidious@fallenorder.onmicrosoft.com\"}",
+      "allowSharing": false,
+      "rateLimit": 0
+    },
+    "capabilities": [],
+    "description": "Custom connector for invoking a Power Automate flow via direct trigger endpoint.",
+    "apiDefinitions": {
+      "originalSwaggerUrl": "https://pafeblobprodcy.blob.core.windows.net/20260419t000000z4b18362f18a44fab85c3112a9c579f08/crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6.json?skoid=1b4c3c9e-b403-4e0f-9933-e50756645683&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-04-19T21%3A00%3A00Z&ske=2026-04-26T21%3A00%3A00Z&sks=b&skv=2025-07-05&sv=2025-07-05&spr=https&st=2026-04-19T21%3A42%3A58Z&se=2026-04-19T22%3A43%3A58Z&sr=c&sp=rl&scid=427727c7-8065-42e0-afbf-6c08ee3b1cf8&sig=yfV%2BGK65O1LVhPo%2B9EwGp6kzXChp0ObSxRVK2iL3bmI%3D",
+      "modifiedSwaggerUrl": "https://firstl001wcusext.blob.core.windows.net/api-swagger-files/crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6.json?skoid=f477654c-bdf9-471e-b4b5-476c6e2a00e8&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skt=2026-04-19T01%3A46%3A21Z&ske=2026-04-20T01%3A46%3A21Z&sks=b&skv=2025-01-05&sv=2025-01-05&spr=https&se=2026-04-19T22%3A39%3A24Z&sr=b&sp=r&sig=Pk9YFLYpf9l9HgymoIvBcHorixL3UXYDCSe%2BqepxU2I%3D"
+    },
+    "policyTemplateInstances": [],
+    "backendService": {
+      "serviceUrl": "https://@environmentVariables(\"crc39_hostUrl\")/@environmentVariables(\"crc39_basePath\")"
+    },
+    "createdBy": {
+      "id": "95e24379-3102-4028-bfda-ecc54d92b9c9",
+      "displayName": "Darth Sidious",
+      "email": "Darth.Sidious@fallenorder.onmicrosoft.com",
+      "type": "User",
+      "tenantId": "1e7886bb-4ad8-4924-b559-29c5f5fea8f5",
+      "userPrincipalName": "Darth.Sidious@fallenorder.onmicrosoft.com"
+    },
+    "modifiedBy": {
+      "id": "95e24379-3102-4028-bfda-ecc54d92b9c9",
+      "displayName": "Darth Sidious",
+      "email": "Darth.Sidious@fallenorder.onmicrosoft.com",
+      "type": "User",
+      "tenantId": "1e7886bb-4ad8-4924-b559-29c5f5fea8f5",
+      "userPrincipalName": "Darth.Sidious@fallenorder.onmicrosoft.com"
+    },
+    "createdTime": "2026-04-19T21:28:59.1916124Z",
+    "changedTime": "2026-04-19T21:37:06.5321865Z",
+    "environment": {
+      "id": "/providers/Microsoft.PowerApps/environments/f0c1817c-eed6-edee-9857-661c7b8d6e0e",
+      "name": "f0c1817c-eed6-edee-9857-661c7b8d6e0e"
+    },
+    "tier": "Standard",
+    "publisher": "Darth Sidious",
+    "almMode": "Solution",
+    "parameters": {
+      "host": "@environmentVariables(\"crc39_hostUrl\")",
+      "basePath": "/@environmentVariables(\"crc39_basePath\")",
+      "backendService": {
+        "serviceUrl": "https://@environmentVariables(\"crc39_hostUrl\")/@environmentVariables(\"crc39_basePath\")"
+      }
+    },
+    "rateLimit": 0,
+    "apiVersion": "None"
+  }
+}

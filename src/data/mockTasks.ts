@@ -1,0 +1,68 @@
+import type { Task } from '../types';
+
+export const mockTasks: Task[] = [
+  {
+    id: 'task-001',
+    title: 'Review ERP error logs and identify root cause',
+    priority: 'Critical',
+    dueDate: '2026-04-19',
+    completed: false,
+    ticketId: 'TKT-001',
+  },
+  {
+    id: 'task-002',
+    title: 'Escalate SSO issue to identity team',
+    priority: 'Critical',
+    dueDate: '2026-04-19',
+    completed: false,
+    ticketId: 'TKT-006',
+  },
+  {
+    id: 'task-003',
+    title: 'Send hotfix ETA to Deutsche Bank',
+    priority: 'High',
+    dueDate: '2026-04-20',
+    completed: false,
+    ticketId: 'TKT-004',
+  },
+  {
+    id: 'task-004',
+    title: 'Schedule call with Siemens IT team',
+    priority: 'High',
+    dueDate: '2026-04-20',
+    completed: false,
+    ticketId: 'TKT-003',
+  },
+  {
+    id: 'task-005',
+    title: 'Document API rate limit increase request',
+    priority: 'High',
+    dueDate: '2026-04-21',
+    completed: false,
+    ticketId: 'TKT-011',
+  },
+  {
+    id: 'task-006',
+    title: 'Verify dashboard fix in staging environment',
+    priority: 'Medium',
+    dueDate: '2026-04-21',
+    completed: true,
+    ticketId: 'TKT-002',
+  },
+  {
+    id: 'task-007',
+    title: 'Update SharePoint connector configuration guide',
+    priority: 'Medium',
+    dueDate: '2026-04-22',
+    completed: false,
+    ticketId: 'TKT-005',
+  },
+  {
+    id: 'task-008',
+    title: 'Send resolution summary to Allianz',
+    priority: 'Low',
+    dueDate: '2026-04-23',
+    completed: false,
+    ticketId: 'TKT-010',
+  },
+];

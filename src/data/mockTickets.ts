@@ -1,0 +1,148 @@
+import type { Ticket } from '../types';
+
+export const mockTickets: Ticket[] = [
+  {
+    id: 'TKT-001',
+    title: 'ERP integration fails during nightly batch run',
+    customer: 'Klaus Hoffmann',
+    customerId: 'cust-001',
+    status: 'In Progress',
+    priority: 'Critical',
+    createdDate: '2026-04-14',
+    assignedAgent: 'Sara Müller',
+    summary:
+      'The customer reports that their ERP integration consistently fails at 02:00 AM during the nightly batch processing window. Error logs indicate a timeout in the data sync pipeline. The issue started after a firmware update on April 12th. Immediate investigation into the sync scheduler and timeout thresholds is recommended.',
+  },
+  {
+    id: 'TKT-002',
+    title: 'Dashboard not loading for regional managers',
+    customer: 'Ingrid Weber',
+    customerId: 'cust-002',
+    status: 'Open',
+    priority: 'High',
+    createdDate: '2026-04-15',
+    assignedAgent: 'Max Becker',
+    summary:
+      'Regional managers at BASF are unable to load the analytics dashboard. The issue appears to be a permissions misconfiguration introduced in the latest role update. Three managers have reported blank screens and a 403 error in the browser console.',
+  },
+  {
+    id: 'TKT-003',
+    title: 'MFA token not delivered to mobile devices',
+    customer: 'Hans Schreiber',
+    customerId: 'cust-003',
+    status: 'Assigned',
+    priority: 'High',
+    createdDate: '2026-04-15',
+    assignedAgent: 'Sara Müller',
+    summary:
+      'Multiple Siemens employees report that multi-factor authentication tokens are not being delivered to their registered mobile devices. The issue affects Android users running OS version 14+. SMS fallback is functional but the authenticator app integration appears broken.',
+  },
+  {
+    id: 'TKT-004',
+    title: 'Report export produces corrupted Excel files',
+    customer: 'Anna Fischer',
+    customerId: 'cust-004',
+    status: 'Waiting',
+    priority: 'Medium',
+    createdDate: '2026-04-16',
+    assignedAgent: 'Max Becker',
+    summary:
+      'When exporting compliance reports to Excel, the output file is corrupted and cannot be opened. The issue reproduces consistently when the report contains more than 5,000 rows. Smaller exports work as expected. Customer is waiting for a hotfix or workaround.',
+  },
+  {
+    id: 'TKT-005',
+    title: 'Policy documents not syncing to SharePoint',
+    customer: 'Lukas Braun',
+    customerId: 'cust-005',
+    status: 'New',
+    priority: 'Medium',
+    createdDate: '2026-04-17',
+    assignedAgent: 'Unassigned',
+    summary:
+      'Allianz reports that updated insurance policy documents are not syncing to the configured SharePoint library. The sync job completes without errors but the files do not appear in the target location. Investigation into the SharePoint connector configuration is needed.',
+  },
+  {
+    id: 'TKT-006',
+    title: 'Single sign-on broken after AD migration',
+    customer: 'Klaus Hoffmann',
+    customerId: 'cust-001',
+    status: 'Open',
+    priority: 'Critical',
+    createdDate: '2026-04-13',
+    assignedAgent: 'Sara Müller',
+    summary:
+      'Following BMW\'s Active Directory migration, SSO authentication is broken for approximately 200 users. Users are redirected to an error page after entering credentials. The SAML token issuer may need to be reconfigured to point to the new AD tenant.',
+  },
+  {
+    id: 'TKT-007',
+    title: 'Automated alerts not triggering on threshold breach',
+    customer: 'Ingrid Weber',
+    customerId: 'cust-002',
+    status: 'In Progress',
+    priority: 'High',
+    createdDate: '2026-04-12',
+    assignedAgent: 'Max Becker',
+    summary:
+      'BASF\'s automated alerting system is not sending notifications when production thresholds are breached. The monitoring dashboard shows breaches occurring but no emails or SMS alerts are dispatched. The notification queue appears to be stalled.',
+  },
+  {
+    id: 'TKT-008',
+    title: 'User provisioning delay exceeding SLA',
+    customer: 'Hans Schreiber',
+    customerId: 'cust-003',
+    status: 'Closed',
+    priority: 'Low',
+    createdDate: '2026-04-10',
+    assignedAgent: 'Sara Müller',
+    summary:
+      'New employee accounts at Siemens were taking 48+ hours to provision instead of the contractual 4-hour SLA. Root cause was a misconfigured provisioning queue. Issue has been resolved and queue processing times are now within SLA.',
+  },
+  {
+    id: 'TKT-009',
+    title: 'Data retention policy not enforcing archival',
+    customer: 'Anna Fischer',
+    customerId: 'cust-004',
+    status: 'Assigned',
+    priority: 'Medium',
+    createdDate: '2026-04-16',
+    assignedAgent: 'Max Becker',
+    summary:
+      'Deutsche Bank reports that records older than the defined retention period are not being automatically archived. Compliance team flagged this as a regulatory risk. The archival job scheduler appears to have a configuration error introduced during last month\'s platform update.',
+  },
+  {
+    id: 'TKT-010',
+    title: 'Mobile app crashes on policy submission',
+    customer: 'Lukas Braun',
+    customerId: 'cust-005',
+    status: 'New',
+    priority: 'High',
+    createdDate: '2026-04-17',
+    assignedAgent: 'Unassigned',
+    summary:
+      'Allianz agents using the mobile application report a crash when submitting new policy forms. The crash occurs after the document upload step and before the confirmation screen. Crash logs indicate a null reference exception in the submission handler.',
+  },
+  {
+    id: 'TKT-011',
+    title: 'API rate limiting causing downstream failures',
+    customer: 'Klaus Hoffmann',
+    customerId: 'cust-001',
+    status: 'Waiting',
+    priority: 'High',
+    createdDate: '2026-04-17',
+    assignedAgent: 'Sara Müller',
+    summary:
+      'BMW\'s connected vehicle platform is hitting API rate limits during peak traffic hours, causing cascading failures in downstream services. Current limit is 1,000 requests per minute. Customer requests either a limit increase or guidance on implementing request queuing.',
+  },
+  {
+    id: 'TKT-012',
+    title: 'Scheduled maintenance window not reflected in portal',
+    customer: 'Ingrid Weber',
+    customerId: 'cust-002',
+    status: 'Closed',
+    priority: 'Low',
+    createdDate: '2026-04-11',
+    assignedAgent: 'Max Becker',
+    summary:
+      'BASF users were not informed of a scheduled maintenance window because the customer portal calendar was not updated in time. The incident caused unnecessary support tickets from confused users. A process improvement has been implemented to automate calendar updates.',
+  },
+];

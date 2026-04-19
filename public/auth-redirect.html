@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Auth Redirect</title>
+  </head>
+  <body>
+    <script>
+      // MSAL popup handler — closes the popup after auth completes
+      if (window.opener) {
+        window.opener.postMessage(window.location.href, window.location.origin);
+        window.close();
+      }
+    </script>
+  </body>
+</html>

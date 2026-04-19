@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "appId": "0fbf2c99-ae27-42bb-9ea8-6587dcab3946",
+  "appDisplayName": "Customer Support Assistant",
+  "region": "prod",
+  "environmentId": "f0c1817c-eed6-edee-9857-661c7b8d6e0e",
+  "description": " ",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {
+    "c341c007-ab35-40ff-abf4-1ccd432958a4": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_crc39-5fpower-20automate-20direct-20invoke-5fba456ee3f9d472a6",
+      "displayName": "Power Automate Direct Invoke",
+      "dataSources": [
+        "crc39_5fpower_20automate_20direct_20invoke_5fba456ee3f9d472a6"
+      ],
+      "dataSets": {}
+    }
+  },
+  "databaseReferences": {}
+}
