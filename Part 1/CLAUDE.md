@@ -19,8 +19,19 @@ To build and deploy to Power Apps:
 
 ```bash
 npm run build
-pac pages upload  # or the relevant pac CLI command for code apps
+pac code push
 ```
+
+### Versioning rule
+
+Every time the app is deployed to a Power Platform environment with `pac code push`, increment the **patch digit** (third number) in `app/src/version.ts` before building:
+
+```ts
+// Before deploy: bump 1.0.0 → 1.0.1, 1.1.2 → 1.1.3, etc.
+export const APP_VERSION = '1.0.1';
+```
+
+The version is displayed next to the app name in the shell bar via `VersionTag` (`app/src/components/shared/VersionTag.tsx`). It reads `APP_VERSION` from `app/src/version.ts` — update that file and the header updates automatically on next build.
 
 ---
 

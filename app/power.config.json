@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "appId": "69c0e8b7-b853-43be-ae6c-61164c57bb12",
+  "appDisplayName": "Customer Support Assistant",
+  "region": "prod",
+  "environmentId": "7edee57a-8151-e291-9c30-d0418c88af4d",
+  "description": " ",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {},
+  "databaseReferences": {}
+}
