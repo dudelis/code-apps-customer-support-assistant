@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "appId": "69c0e8b7-b853-43be-ae6c-61164c57bb12",
+  "appDisplayName": "Customer Support Assistant",
+  "region": "prod",
+  "environmentId": "7edee57a-8151-e291-9c30-d0418c88af4d",
+  "description": " ",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {
+    "cbea09a2-b006-4c86-a93d-6cba151ffb5b": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_office365users",
+      "displayName": "Office 365 Users",
+      "dataSources": [
+        "office365users"
+      ],
+      "dataSets": {}
+    },
+    "2e8c6d9b-7621-4d34-8348-7b14addef3e5": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_office365",
+      "displayName": "Office 365 Outlook",
+      "dataSources": [
+        "office365"
+      ],
+      "dataSets": {}
+    }
+  },
+  "databaseReferences": {}
+}
