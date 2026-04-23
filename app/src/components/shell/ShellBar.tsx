@@ -1,6 +1,7 @@
 import { makeStyles, tokens, Text } from '@fluentui/react-components';
 import { RoleSwitcher } from './RoleSwitcher';
 import { VersionTag } from '../shared/VersionTag';
+import { UserAvatar } from '../shared/UserAvatar';
 import type { Role } from '../../types';
 
 interface ShellBarProps {
@@ -55,6 +56,7 @@ export function ShellBar({ role, onRoleChange }: ShellBarProps) {
         <VersionTag />
       </div>
       <div className={styles.right}>
+        <UserAvatar />
         <RoleSwitcher role={role} onRoleChange={onRoleChange} />
       </div>
     </header>

@@ -1,377 +1,107 @@
-You are extending an existing React + TypeScript + Vite Code App prototype called "Customer Support Assistant".
+Use the existing Customer Support Assistant repo context and memory bank. Do not restate known project setup and do not rebuild the app.
 
-The app already has:
-- a premium dark enterprise UI
-- a Support Agent dashboard
-- a Manager dashboard
-- ticket list / kanban / customers views
-- a ticket overlay
-- Microsoft 365-style enrichment for user, calendar, and lightweight message context
-- mock fallback data and local state where needed
+Task:
+Refactor the existing app so Dataverse becomes the primary business data layer for the current app, while keeping the implementation simple and aligned with what the UI already uses.
 
-Your task now is to refactor the app so that Dataverse becomes the primary business data layer.
+Before creating any tables in Dataverse, create the following foundation first:
 
-Important:
-- Extend the existing app, do not rebuild it from scratch
-- Keep the current visual design and look-and-feel
-- Dataverse should become the main system of record for business entities
-- Microsoft 365-style data should remain complementary for internal users, photos, and optional calendar/mail context
-- Keep the app practical, readable, and demo-friendly
-- Where a real Dataverse connection is not possible in the current prototype context, create the app architecture, models, services, repository abstractions, and rich dummy data so the transition to real Dataverse is straightforward
+1. Create a Dataverse publisher:
+   - Name: Death Star Development
+   - Prefix: csa
+2. Create a solution using that publisher:
+   - Name: Customer Support Assistant
+3. Create all custom tables inside that solution and use the `csa` prefix.
+4. Place the app in the same solution.
+5. Create Dataverse access in the app and add the required Dataverse connections.
 
---------------------------------------------------
-PROJECT CONTEXT
---------------------------------------------------
+Keep the data model simple for this stage.
 
-This app is part of a multi-step series and evolves in this order:
-- Part 1: environment setup
-- Part 2: UI scaffolding
-- Part 3: Microsoft 365 enrichment
-- Part 4: Dataverse as business data layer
-- Later parts: flows, Copilot Studio agent, ALM
-
-For this step, the app must be restructured around a proper Dataverse-oriented domain model.
-
-Tech stack:
-- React
-- TypeScript
-- Vite
-- Fluent UI v9 preferred
-- Clean component structure
-- Easy to extend later
-
---------------------------------------------------
-DESIGN LANGUAGE
---------------------------------------------------
-
-Keep the existing visual style exactly aligned with the current app.
-
-Requirements:
-- Dark premium theme
-- Glassmorphism panels
-- Soft shadows
-- Gradients
-- Rounded corners
-- Spacious enterprise layout
-- Professional and clean UI
-- Do not downgrade the current design quality
-
---------------------------------------------------
-GOAL
---------------------------------------------------
-
-Convert the app into a structured solution where Dataverse is the primary business data layer.
-
-This means:
-- Dataverse-oriented business entities drive the UI
-- The app should reflect a realistic business schema
-- Existing screens should now read from app/domain models that are sourced primarily from Dataverse-style entities
-- Microsoft 365 remains for internal identity/profile enrichment and optional calendar/mail interplay
-
---------------------------------------------------
-CORE BUSINESS CAPABILITIES TO SUPPORT
---------------------------------------------------
-
-Support the following business capabilities in the app domain:
-
-- Tickets
-- Ticket phases
-- Action items
-- Contacts
-- Ticket participants
-- Message artifacts
-- Support insights
-- Weekly highlights
-- Audio summaries
-
---------------------------------------------------
-DATAVERSE-ORIENTED TABLES
---------------------------------------------------
-
-Model the business layer around these Dataverse-oriented tables.
+The three main Dataverse tables should be:
 
 1. Tickets
-Fields:
-- Name
-- Company
-- Category
-- Start / Created Date
-- Last Updated / End if relevant
-- Phase
-- Owner (Support Agent / Manager reference)
-- Summary
-- Readiness Score or Health Score
-- Audio flag / URL
-- OutlookEventId or ExternalReferenceId if relevant
+2. Customers
+3. Tasks
 
-2. Ticket Phases
-Fields:
-- Name
-- Order
-- Color
+You can introduce a small number of supporting Dataverse fields, lookups, or choice columns for things like status, priority, and stage if needed, but keep the core implementation centered on these three tables. Do not expand into a large multi-table architecture unless the current app clearly requires it.
 
-3. Action Items
-Fields:
-- Title
-- Ticket lookup
-- Due Date
-- Priority
-- Completed
-- Assigned To
+Please check the rest of the app and confirm the current UI/data usage, but optimize for the simplest correct implementation. Based on the current app structure, `Tickets`, `Customers`, and `Tasks` should be treated as the primary business tables.
 
-4. Contacts
-Fields:
-- Name
-- Company
-- Role
-- Email
-- Photo
-- Technical stance
-- Interests
-- Smalltalk topics
+Scope and constraints:
 
-5. Ticket Participants
-Fields:
-- Ticket lookup
-- Contact lookup
-- Role
-- External flag
+- extend the current app; do not rebuild it
+- keep the current UI, layout, and component structure intact where practical
+- keep the implementation readable, explicit, and demo-friendly
+- Dataverse should become the system of record for the three main business entities
+- Microsoft 365 data should remain complementary for internal-user profile/photo/calendar enrichment where already used
+- if live Dataverse is not available during development, keep a seed/demo path that mirrors the Dataverse structure and makes later live wiring obvious
 
-6. Message Artifacts
-Fields:
-- Subject
-- Ticket lookup
-- Contact lookup
-- Preview
-- Draft flag
-- OutlookId or ExternalMessageId
+Dataverse table expectations:
 
-7. Support Insights
-Fields:
-- Ticket lookup
-- Contact lookup
-- Insight text
-- Priority
+1. Tickets
+   - title or name
+   - customer lookup
+   - assigned agent reference or identifier
+   - status
+   - priority
+   - created date
+   - updated date
+   - summary
 
-8. Weekly Highlights
-Fields:
-- Title
-- Description
-- Related ticket
-- Priority
-- Week
+2. Customers
+   - name
+   - company
+   - role
+   - email
+   - last interaction date
 
-9. Audio Summaries
-Fields:
-- Ticket lookup
-- Title
-- Duration
-- URL
-- Transcript
+3. Tasks
+   - title
+   - ticket lookup, if applicable
+   - priority
+   - due date
+   - completed flag
 
-Important:
-- Adapt field naming where needed to match the Customer Support Assistant app
-- Keep the spirit of the schema, but make it natural for a support scenario rather than a briefing scenario
+Relationship expectations:
 
---------------------------------------------------
-INTERNAL USERS
---------------------------------------------------
+- one customer can have many tickets
+- one ticket can have many tasks
+- tasks may optionally exist without a ticket if the current app behavior needs that
+- use Dataverse lookups where relationships matter
+- use Dataverse choice columns where appropriate for status and priority
 
-Internal users should not be duplicated as Dataverse business contacts.
+Seed/demo data expectations:
 
-Requirements:
-- Use Microsoft 365-style user profile data for internal users where appropriate
-- Do not create duplicate business contact rows for internal employees unless there is a strong reason
-- Use email or stable identifiers for internal-user references where needed
-- Keep a clear distinction between:
-  - internal Microsoft 365 users
-  - external customer/business contacts stored in Dataverse-oriented entities
+- populate the three main tables with dummy data
+- use some funny Star Wars-themed records while still keeping the data useful for demos
+- include enough data to exercise the existing screens and views
 
---------------------------------------------------
-DUMMY DATA REQUIREMENTS
---------------------------------------------------
+App changes required:
 
-Create rich demo data for the Dataverse-oriented domain.
+1. Update the app so it reads data from Dataverse for the three main tables: Tickets, Customers, and Tasks.
+2. Update the app so CRUD operations for those three tables can be carried out inside the app.
+3. Keep the current dashboards and views working with the new Dataverse-backed data layer.
+4. Keep the code structure clear so the Dataverse part is easy to explain in the video series.
 
-Use realistic companies such as:
-- BMW
-- BASF
-- Siemens
-- Deutsche Bank
-- Allianz
+Implementation guidance:
 
-Generate:
-- multiple tickets across phases
-- action items with different priorities and due dates
-- customer contacts with interests and smalltalk topics
-- message artifacts and support insights
-- weekly highlights
-- audio summary records
+- introduce a clear Dataverse service/repository layer for Tickets, Customers, and Tasks
+- keep mock/demo and live Dataverse access behind the same abstractions if helpful
+- preserve the current React + hooks structure where practical
+- avoid over-engineering and avoid adding unnecessary new concepts for this step
 
-Requirements:
-- data should feel realistic and business-ready
-- relationships between records should be meaningful
-- enough data should exist to fully populate the UI
-- avoid shallow placeholder-only data
+Required output:
 
---------------------------------------------------
-APP INTEGRATION REQUIREMENTS
---------------------------------------------------
-
-Refactor the existing app so that screens use the Dataverse-oriented business layer.
-
-1. SUPPORT AGENT DASHBOARD
-
-Map sections like this:
-- ticket schedule / calendar area → tickets or ticket-related schedule data
-- kanban → tickets + ticket phases
-- customers view → contacts
-- my tasks → action items
-
-2. TICKET OVERLAY
-
-Map sections like this:
-- summary → ticket record
-- tasks → action items
-- messages → message artifacts
-- insights → support insights
-- phase bar → ticket phases
-- customer / participant context → contacts + ticket participants
-
-3. MANAGER DASHBOARD
-
-Map sections like this:
-- today / active work → tickets
-- highlights → weekly highlights
-- audio player / podcast-like area → audio summaries
-- metrics → derived from ticket and action item data
-
-Requirements:
-- Keep the UI structure and premium look intact
-- Change the underlying data layer and mapping, not the overall product direction
-- Existing components should be reused where possible
-
---------------------------------------------------
-CONNECTOR INTERPLAY
---------------------------------------------------
-
-The app should reflect this source-of-truth model:
-
-- Dataverse-oriented business data = primary system of record
-- Microsoft 365 user data = internal profile enrichment
-- Outlook/calendar/mail context = optional complementary enrichment
-
-Examples:
-- internal user photos can come from Microsoft 365 profile data
-- external customer contacts should come from Dataverse-oriented contact entities
-- a ticket can reference an Outlook event ID if relevant, but the ticket itself belongs to Dataverse
-- message previews can mix Dataverse-stored artifacts with optional Outlook-linked references
-
---------------------------------------------------
-ARCHITECTURE REQUIREMENTS
---------------------------------------------------
-
-Introduce a clean, practical architecture that separates:
-
-- domain/business entities
-- Dataverse-oriented repositories/services
-- Microsoft 365 enrichment services
-- UI view models
-- dummy data seed layer for prototype/demo mode
-
-Use a simple repository or service pattern, for example:
-- ticket repository
-- phase repository
-- action item repository
-- contact repository
-- insight repository
-- weekly highlight repository
-- audio summary repository
-- user enrichment service
-- optional calendar/mail enrichment service
-
-Requirements:
-- keep the architecture understandable
-- avoid overengineering
-- prioritize readability and maintainability
-- make it easy to swap the dummy data implementation for a real Dataverse API layer later
-
---------------------------------------------------
-RELATIONSHIPS AND MODELING DECISIONS
---------------------------------------------------
-
-Model and reflect realistic relationships.
-
-Examples:
-- one ticket has one phase
-- one ticket has many action items
-- one ticket has many participants
-- one ticket has many message artifacts
-- one ticket has many support insights
-- one ticket may have zero or many audio summaries
-- one weekly highlight can reference one related ticket
-
-When modeling fields, make practical decisions between:
-- simple text
-- enum / choice
-- lookup / foreign key style references
-- derived values
-
-Requirements:
-- where a choice-like field makes sense, model it clearly
-- where relationships are important, use lookup-style references in the app/domain model
-- keep naming explicit and business-friendly
-
---------------------------------------------------
-FALLBACK / PROTOTYPE MODE
---------------------------------------------------
-
-Even if no real Dataverse API exists yet, the app must behave as though Dataverse is the primary data layer.
-
-Requirements:
-- implement seed/demo data as if it were returned from Dataverse-style repositories
-- keep the UI fully usable
-- do not leave major sections empty
-- preserve the prototype experience
-- make the code future-proof for real integration
-
---------------------------------------------------
-TECHNICAL REQUIREMENTS
---------------------------------------------------
-
-- Keep the current design and layout intact
-- Refactor existing screens and components instead of unnecessarily replacing them
-- Use TypeScript types for all domain models
-- Introduce clear repository/service boundaries
-- Keep state handling straightforward
-- Make implementation easy to evolve in later parts
-- Comment only where useful
-- Keep the codebase clean, organized, and demo-ready
-
---------------------------------------------------
-DELIVERABLE
---------------------------------------------------
-
-Provide the implementation in one go.
-
-Specifically:
-1. Refactor the app around a Dataverse-oriented schema
-2. Add TypeScript domain models for the business entities
-3. Add repository/service abstractions for Dataverse-oriented data access
-4. Add rich dummy data that respects the entity relationships
-5. Update existing screens and components to use the new domain layer
-6. Keep Microsoft 365 enrichment where useful for internal user context
-7. Add concise notes in code comments or a short README note explaining:
-   - schema decisions
-   - relationship decisions
-   - lookup vs choice-style decisions
-   - current limitations without full real Dataverse connectivity
-   - implementation order for future real integration
+1. Verify the app’s current business data usage and keep the implementation focused on the three main tables.
+2. Add or adapt the Dataverse layer for Tickets, Customers, and Tasks.
+3. Wire the app to display Dataverse-backed data for those entities.
+4. Support create, read, update, and delete operations in the app for those entities.
+5. Seed the data with demo records, including some Star Wars-themed examples.
+6. Keep the code readable and ready for the next series step.
 
 Important:
-- Do not return only a plan
-- Actually scaffold and update the code
-- Preserve the premium enterprise UI
-- Preserve the existing app structure where possible
-- Keep the result practical, readable, and ready for the next step in the series
-- Adapt everything to the Customer Support Assistant domain, not executive briefings
+
+- do not return only a plan
+- actually update the codebase
+- keep the scope intentionally small
+- preserve the existing app direction and UI
+- prefer a simple three-table Dataverse design over a more ambitious schema for this step

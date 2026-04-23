@@ -6,7 +6,8 @@
 - App name: Customer Support Assistant
 - Environment: code-apps (7edee57a-8151-e291-9c30-d0418c88af4d)
 - App URL: https://apps.powerapps.com/play/e/7edee57a-8151-e291-9c30-d0418c88af4d/app/69c0e8b7-b853-43be-ae6c-61164c57bb12
-- Version: v1.0.0
+- Version: v1.0.4 (live M365 connectors active)
+- App URL: https://apps.powerapps.com/play/e/7edee57a-8151-e291-9c30-d0418c88af4d/app/69c0e8b7-b853-43be-ae6c-61164c57bb12
 
 ## Completed Steps
 
@@ -22,8 +23,10 @@
 
 ## Data Sources
 
-- None in Part 1 — mock data only in src/data/*.ts
-- Part 2 will add Dataverse
+- **Office 365 Users** — connection `shared-office365user-91d43677-e3ab-4110-b0bb-1b850c7cd8d1` (API: `shared_office365users`)
+- **Office 365 Outlook** — connection `64b7342d44814b4e9e6237500a14d0fb` (API: `shared_office365`)
+- Added via `pac code add-data-source`; generated services in `src/generated/services/`
+- Toggle live vs mock via `VITE_M365_MODE=live` in `.env.local`
 
 ## Components Planned
 

@@ -4,11 +4,15 @@
 
 ```
 src/
-├── components/   # React components (one per file, PascalCase)
-├── services/     # Stateless async integration modules
-├── hooks/        # Custom hooks — bridge services ↔ components
-├── App.tsx       # Root component, layout
-└── main.tsx      # Entry point
+├── components/      # React components (one per file, PascalCase)
+├── services/        # Stateless async integration modules (hand-written)
+├── hooks/           # Custom hooks — bridge services ↔ components
+├── data/            # Mock data modules (used when VITE_M365_MODE != 'live')
+├── generated/       # PAC CLI-generated connector services & models (do not edit)
+│   ├── services/
+│   └── models/
+├── App.tsx          # Root component, layout
+└── main.tsx         # Entry point
 ```
 
 ## Data Flow
@@ -37,9 +41,11 @@ useEffect(() => { fetch('/api/...').then(...) }, []);
 
 ## Service Conventions
 
-- One file per integration domain: `dataverse.ts`, `flows.ts`, `copilot.ts`, `connector-<name>.ts`
+- One file per integration domain: `userProfileService.ts`, `calendarService.ts`, `dataverse.ts`, `flows.ts`
 - Named exports only — no default exports, no classes
-- All table/column logical names and URLs are named constants at the top of the file
+- All table/column logical names, URLs, and constants at the top of the file
+- Use `VITE_M365_MODE` env var to toggle mock vs live connector calls
+- Live mode calls generated services in `src/generated/services/`; mock mode returns data from `src/data/`
 - Errors propagate as thrown exceptions — hooks handle them
 
 ```ts

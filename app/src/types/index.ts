@@ -1,7 +1,7 @@
 export type TicketStatus = 'New' | 'Open' | 'Assigned' | 'In Progress' | 'Waiting' | 'Closed';
 export type Priority = 'Low' | 'Medium' | 'High' | 'Critical';
 export type Role = 'agent' | 'manager';
-export type AgentNavView = 'tickets' | 'kanban' | 'customers';
+export type AgentNavView = 'tickets' | 'kanban' | 'customers' | 'calendar';
 export type OverlayTab = 'summary' | 'activity' | 'messages' | 'customer';
 
 export interface Ticket {
@@ -61,4 +61,29 @@ export interface ActivityEntry {
   ticketId: string;
   description: string;
   timestamp: string;
+}
+
+export interface UserProfile {
+  id: string;
+  displayName: string;
+  jobTitle: string;
+  /** Base64 data URL or HTTP URL; null means show initials fallback */
+  photoUrl: string | null;
+  email: string;
+}
+
+export interface CalendarEventDateTime {
+  dateTime: string;   // ISO 8601 (e.g. "2026-04-21T14:00:00")
+  timeZone: string;   // IANA tz (e.g. "Europe/Berlin")
+}
+
+export interface CalendarEvent {
+  id: string;
+  subject: string;
+  start: CalendarEventDateTime;
+  end: CalendarEventDateTime;
+  isAllDay: boolean;
+  organizer: string;
+  attendees: string[];
+  isOnlineMeeting: boolean;
 }

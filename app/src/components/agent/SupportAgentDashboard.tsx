@@ -4,6 +4,7 @@ import { AgentNavTabs } from './AgentNavTabs';
 import { TicketsView } from './TicketsView';
 import { KanbanView } from './KanbanView';
 import { CustomersView } from './CustomersView';
+import { CalendarView } from './CalendarView';
 import { MyTasksSidebar } from './MyTasksSidebar';
 import type { AgentNavView } from '../../types';
 
@@ -39,6 +40,7 @@ export function SupportAgentDashboard() {
         {activeView === 'tickets' && <TicketsView />}
         {activeView === 'kanban' && <KanbanView />}
         {activeView === 'customers' && <CustomersView />}
+        {activeView === 'calendar' && <CalendarView />}
       </div>
       <div className={styles.sidebar}>
         <MyTasksSidebar />

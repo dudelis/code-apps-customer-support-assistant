@@ -10,6 +10,7 @@ const tabs: { id: AgentNavView; label: string; icon: string }[] = [
   { id: 'tickets', label: 'Tickets', icon: '📋' },
   { id: 'kanban', label: 'Kanban', icon: '📊' },
   { id: 'customers', label: 'Customers', icon: '👥' },
+  { id: 'calendar', label: 'Calendar', icon: '📅' },
 ];
 
 const useStyles = makeStyles({

@@ -2,26 +2,32 @@
 
 ## Current Focus
 
-Part 1 complete. Full UI prototype scaffolded, implemented, and deployed to the `code-apps` environment.
+Part 3 complete. Microsoft 365 User + Calendar integration added (mock data + service layer ready for live connector).
 
 ## Recent Changes
 
-- Scaffolded Code App into `./app/` using `npx degit microsoft/PowerAppsCodeApps/templates/vite`
-- Installed `@fluentui/react-components` v9
-- Implemented full UI prototype with mock data:
-  - Premium dark glassmorphism theme (`customDarkTheme` + `glassStyles`)
-  - ShellBar with 🎧 icon and Support Agent / Manager role switcher
-  - Support Agent Dashboard: 70/30 split, Tickets / Kanban / Customers nav, My Tasks sidebar
-  - Manager Dashboard: greeting, metrics strip, active tickets, critical issues, AI insights
-  - Full-screen Ticket Overlay: gradient header, Summary / Activity / Messages / Customer Info tabs, status progression bar
-  - 18 realistic mock tickets across BMW, BASF, Siemens, Deutsche Bank, Allianz
-- Deployed v1.0.0 to `code-apps` environment
-- App URL: https://apps.powerapps.com/play/e/7edee57a-8151-e291-9c30-d0418c88af4d/app/69c0e8b7-b853-43be-ae6c-61164c57bb12
+- Condensed `preparation/part-4-dataverse.md` into a repo-aware implementation prompt that avoids repeating project/stack context already covered by the memory bank and instructions
+- Rewrote `preparation/part-4-dataverse.md` again to narrow Part 4 Dataverse scope to the three core tables already reflected in the app: Tickets, Customers, and Tasks
+- Added required Dataverse setup steps to the prompt: publisher (`Death Star Development`, prefix `csa`), solution (`Customer Support Assistant`), solution placement, Dataverse connections, and Star Wars-themed seed data
+- Added `UserProfile`, `CalendarEvent`, `CalendarEventDateTime` types to `src/types/index.ts`
+- Updated `AgentNavView` to include `'calendar'`
+- Created mock data: `src/data/userProfile.ts`, `src/data/calendarEvents.ts`
+- Created service layer: `src/services/userProfileService.ts`, `src/services/calendarService.ts`
+  - Toggle live vs mock via `VITE_M365_MODE=live` in `.env.local`
+  - Wired to `Office365UsersService` and `Office365OutlookService` generated connectors in live mode
+- Added Office 365 Users + Office 365 Outlook connectors via `pac code add-data-source`
+- Generated services in `src/generated/services/`
+- Created hooks: `src/hooks/useUserProfile.ts`, `src/hooks/useCalendarEvents.ts`
+- Created `src/components/shared/UserAvatar.tsx` — compact avatar + name in ShellBar (job title in tooltip)
+- Created `src/components/agent/CalendarView.tsx` — event list with loading / error / empty states
+- Updated `ShellBar` — added `<UserAvatar />` to right section
+- Updated `AgentNavTabs` — added 📅 Calendar tab
+- Updated `SupportAgentDashboard` — renders `<CalendarView />` when `activeView === 'calendar'`
 
 ## Next Steps
 
-1. Part 2 — Dataverse: replace `src/data/*.ts` mock modules with real Dataverse Web API calls in `src/services/dataverse.ts`; hooks stay the same interface
-2. Define Dataverse table schema for `supportticket` and `customer` tables (Part 2 decision)
+1. Part 2 (pending) — Dataverse: replace `src/data/*.ts` mock modules with real Web API calls
+2. To go live with M365: set `VITE_M365_MODE=live` in `.env.local`, build, and deploy
 
 ## Open Decisions
 
