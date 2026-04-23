@@ -5,6 +5,27 @@
  */
 
 export const dataSourcesInfo = {
+  "csa_customers": {
+    "tableId": "",
+    "version": "",
+    "primaryKey": "csa_customerid",
+    "dataSourceType": "Dataverse",
+    "apis": {}
+  },
+  "csa_tasks": {
+    "tableId": "",
+    "version": "",
+    "primaryKey": "csa_taskid",
+    "dataSourceType": "Dataverse",
+    "apis": {}
+  },
+  "csa_tickets": {
+    "tableId": "",
+    "version": "",
+    "primaryKey": "csa_ticketid",
+    "dataSourceType": "Dataverse",
+    "apis": {}
+  },
   "office365": {
     "tableId": "",
     "version": "",

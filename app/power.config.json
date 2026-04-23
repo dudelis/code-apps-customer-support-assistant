@@ -27,5 +27,23 @@
       "dataSets": {}
     }
   },
-  "databaseReferences": {}
+  "databaseReferences": {
+    "default.cds": {
+      "dataSources": {
+        "customers": {
+          "entitySetName": "csa_customers",
+          "logicalName": "csa_customer"
+        },
+        "tickets": {
+          "entitySetName": "csa_tickets",
+          "logicalName": "csa_ticket"
+        },
+        "tasks": {
+          "entitySetName": "csa_tasks",
+          "logicalName": "csa_task"
+        }
+      },
+      "environmentVariableName": ""
+    }
+  }
 }

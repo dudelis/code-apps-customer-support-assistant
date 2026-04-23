@@ -1,107 +1,62 @@
-Use the existing Customer Support Assistant repo context and memory bank. Do not restate known project setup and do not rebuild the app.
+# Part 4 Dataverse Prompts
 
-Task:
-Refactor the existing app so Dataverse becomes the primary business data layer for the current app, while keeping the implementation simple and aligned with what the UI already uses.
+This stage is easier to execute in small passes instead of one large prompt. Use the prompts below in order.
 
-Before creating any tables in Dataverse, create the following foundation first:
+Each prompt should:
 
-1. Create a Dataverse publisher:
-   - Name: Death Star Development
-   - Prefix: csa
-2. Create a solution using that publisher:
-   - Name: Customer Support Assistant
-3. Create all custom tables inside that solution and use the `csa` prefix.
-4. Place the app in the same solution.
-5. Create Dataverse access in the app and add the required Dataverse connections.
+- use the existing Customer Support Assistant repo context and memory bank;
+- avoid restating known project setup;
+- extend the current app instead of rebuilding it;
+- keep the implementation simple, explicit, and demo-friendly;
+- stop after completing only the scope of that prompt.
 
-Keep the data model simple for this stage.
+## Prompt 1: Foundation
 
-The three main Dataverse tables should be:
+Use [preparation/part-4-dataverse-1-foundation.md](preparation/part-4-dataverse-1-foundation.md).
 
-1. Tickets
-2. Customers
-3. Tasks
+Goal:
+Set up the Dataverse foundation before any table or code work starts.
 
-You can introduce a small number of supporting Dataverse fields, lookups, or choice columns for things like status, priority, and stage if needed, but keep the core implementation centered on these three tables. Do not expand into a large multi-table architecture unless the current app clearly requires it.
+## Prompt 2: Tables And Seed Data
 
-Please check the rest of the app and confirm the current UI/data usage, but optimize for the simplest correct implementation. Based on the current app structure, `Tickets`, `Customers`, and `Tasks` should be treated as the primary business tables.
+Use [preparation/part-4-dataverse-2-tables.md](preparation/part-4-dataverse-2-tables.md).
 
-Scope and constraints:
+Goal:
+Create the minimum Dataverse schema and demo data needed for the current UI.
 
-- extend the current app; do not rebuild it
-- keep the current UI, layout, and component structure intact where practical
-- keep the implementation readable, explicit, and demo-friendly
-- Dataverse should become the system of record for the three main business entities
-- Microsoft 365 data should remain complementary for internal-user profile/photo/calendar enrichment where already used
-- if live Dataverse is not available during development, keep a seed/demo path that mirrors the Dataverse structure and makes later live wiring obvious
+## Prompt 3: Service Layer
 
-Dataverse table expectations:
+Use [preparation/part-4-dataverse-3-services.md](preparation/part-4-dataverse-3-services.md).
 
-1. Tickets
-   - title or name
-   - customer lookup
-   - assigned agent reference or identifier
-   - status
-   - priority
-   - created date
-   - updated date
-   - summary
+Goal:
+Add a readable Dataverse service layer and preserve a clear mock or demo fallback path.
 
-2. Customers
-   - name
-   - company
-   - role
-   - email
-   - last interaction date
+## Prompt 4: Wire The App
 
-3. Tasks
-   - title
-   - ticket lookup, if applicable
-   - priority
-   - due date
-   - completed flag
+Use [preparation/part-4-dataverse-4-wire-ui.md](preparation/part-4-dataverse-4-wire-ui.md).
 
-Relationship expectations:
+Goal:
+Switch the current tickets, customers, and tasks views to the new Dataverse-backed layer without changing the app direction.
 
-- one customer can have many tickets
-- one ticket can have many tasks
-- tasks may optionally exist without a ticket if the current app behavior needs that
-- use Dataverse lookups where relationships matter
-- use Dataverse choice columns where appropriate for status and priority
+## Prompt 5: CRUD And Final Pass
 
-Seed/demo data expectations:
+Use [preparation/part-4-dataverse-5-crud-and-polish.md](preparation/part-4-dataverse-5-crud-and-polish.md).
 
-- populate the three main tables with dummy data
-- use some funny Star Wars-themed records while still keeping the data useful for demos
-- include enough data to exercise the existing screens and views
+Goal:
+Finish the smallest useful CRUD loop, keep the dashboards working, and leave the code ready for the next series step.
 
-App changes required:
+## Suggested Order
 
-1. Update the app so it reads data from Dataverse for the three main tables: Tickets, Customers, and Tasks.
-2. Update the app so CRUD operations for those three tables can be carried out inside the app.
-3. Keep the current dashboards and views working with the new Dataverse-backed data layer.
-4. Keep the code structure clear so the Dataverse part is easy to explain in the video series.
+1. Foundation
+2. Tables and seed data
+3. Service layer
+4. UI wiring
+5. CRUD and cleanup
 
-Implementation guidance:
+## Why This Split Works
 
-- introduce a clear Dataverse service/repository layer for Tickets, Customers, and Tasks
-- keep mock/demo and live Dataverse access behind the same abstractions if helpful
-- preserve the current React + hooks structure where practical
-- avoid over-engineering and avoid adding unnecessary new concepts for this step
-
-Required output:
-
-1. Verify the app’s current business data usage and keep the implementation focused on the three main tables.
-2. Add or adapt the Dataverse layer for Tickets, Customers, and Tasks.
-3. Wire the app to display Dataverse-backed data for those entities.
-4. Support create, read, update, and delete operations in the app for those entities.
-5. Seed the data with demo records, including some Star Wars-themed examples.
-6. Keep the code readable and ready for the next series step.
-
-Important:
-
-- do not return only a plan
-- actually update the codebase
-- keep the scope intentionally small
-- preserve the existing app direction and UI
-- prefer a simple three-table Dataverse design over a more ambitious schema for this step
+- Prompt 1 handles Power Platform setup only.
+- Prompt 2 locks down schema decisions before app code changes.
+- Prompt 3 creates the app abstraction layer before the UI is rewired.
+- Prompt 4 limits the main refactor to read-path wiring.
+- Prompt 5 finishes mutations and small polish without reopening design decisions.

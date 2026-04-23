@@ -4,9 +4,16 @@
  */
 
 // Models
+export * as CommonModels from './models/CommonModels';
+export * as Csa_customersModel from './models/Csa_customersModel';
+export * as Csa_tasksModel from './models/Csa_tasksModel';
+export * as Csa_ticketsModel from './models/Csa_ticketsModel';
 export * as Office365OutlookModel from './models/Office365OutlookModel';
 export * as Office365UsersModel from './models/Office365UsersModel';
 
 // Services
+export * from './services/Csa_customersService';
+export * from './services/Csa_tasksService';
+export * from './services/Csa_ticketsService';
 export * from './services/Office365OutlookService';
 export * from './services/Office365UsersService';
