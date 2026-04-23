@@ -5,7 +5,7 @@ Customer Support Assistant is a Power Apps Code App built as a step-by-step vide
 This repository is doing two things at once:
 
 - building a modern support workspace for agents and managers;
-- documenting a practical learning path for React developers working with Power Apps, Dataverse, connectors, flows, and Copilot Studio.
+- documenting a practical learning path for React developers working with Power Apps, Dataverse, connectors, Power Automate, Copilot, external APIs, and ALM.
 
 ## What We Are Building
 
@@ -16,7 +16,7 @@ The app gives support teams a focused interface for handling customer work:
 - enrich the UI with Microsoft 365 data such as user profile details and calendar events;
 - prepare the app for Dataverse-backed ticket data, Power Automate workflows, and Copilot Studio assistance.
 
-Today, the repository already contains a polished UI prototype and live Microsoft 365 connector integration. The next stages move the app from mocked business data into a real Power Platform implementation.
+Parts 1 through 3 are already complete. The repository currently has a polished UI prototype plus live Microsoft 365 connector integration, and the next step is preparing Part 4 so the app moves from mocked business data into a real Dataverse-backed implementation.
 
 ## Why This Project Exists
 
@@ -25,28 +25,40 @@ Support teams often need something more tailored than a standard business app sc
 - custom React UI where the experience matters;
 - Power Apps hosting and identity so there is no separate auth stack to build;
 - Dataverse, Power Automate, and connectors for the business system side;
-- Copilot Studio as a natural extension for AI-assisted support work.
+- Copilot as a natural extension for AI-assisted support work;
+- external URLs and APIs to enrich ticket context beyond Microsoft 365.
 
-The repo is also intentionally instructional. Each part of the series adds one capability at a time so the code stays readable and easy to follow.
+The repo is also intentionally instructional. Each part of the series adds one capability at a time so the code stays readable, explainable, and easy to follow in video form.
 
 ## Current State
 
+- Parts 1, 2, and 3 of the build plan are complete
 - UI shell and dashboard experience are implemented in React + TypeScript
 - Agent and manager views are available with reusable Fluent UI components
 - Microsoft 365 Users and Outlook connectors are wired through generated services
 - Mock data still powers core ticket, customer, and task views
+- Part 4 is being prepared to move the main business data into Dataverse
 - App version is currently `1.0.4`
 
 ## Series Roadmap
 
-| Part | Focus                                         | Status   |
-| ---- | --------------------------------------------- | -------- |
-| 1    | Scaffold the Code App and build the UI shell  | Complete |
-| 2    | Connect ticket data to Dataverse              | Planned  |
-| 3    | Add Microsoft 365 user and calendar data      | Complete |
-| 4    | Create and update tickets with Power Automate | Planned  |
-| 5    | Add Copilot Studio chat assistance            | Planned  |
-| 6    | Add ALM and deployment workflow guidance      | Planned  |
+| Part | Focus                          | Status         |
+| ---- | ------------------------------ | -------------- |
+| 1    | Dev environment setup          | Complete       |
+| 2    | Scaffolding the app            | Complete       |
+| 3    | Adding connectors              | Complete       |
+| 4    | Adding Dataverse               | In preparation |
+| 5    | Starting the flow from the app | Planned        |
+
+## Beyond Part 5
+
+After the core five parts, the plan is to extend the app further with:
+
+- Copilot assistance for support scenarios;
+- calling external URLs and APIs to bring more context into the app;
+- ALM guidance so the project can move cleanly across environments.
+
+That means the series is not just about getting a UI on screen. It is about showing how a Code App can grow into a realistic Power Platform solution over time.
 
 ## Repository Layout
 
@@ -72,7 +84,8 @@ The main product lives in `app/`. If you want to run, edit, or deploy the applic
 - Fluent UI v9
 - Power Apps Code Apps
 - Microsoft 365 connectors
-- Dataverse, Power Automate, and Copilot Studio in later stages
+- Dataverse and Power Automate in the next stages
+- Copilot, external APIs, and ALM in later stages
 
 ## Getting Started
 
@@ -107,6 +120,16 @@ components -> hooks -> services -> Power Platform or mock data
 
 This structure is deliberate: it keeps the teaching story clear and makes each new video part easy to layer on top of the previous one.
 
+## Plan For The Next Stages
+
+The immediate implementation plan is straightforward:
+
+- move tickets, customers, and tasks into Dataverse;
+- start Power Automate flows from the app once Dataverse is in place;
+- then add AI and external integration scenarios without rebuilding the UI foundation.
+
+That sequencing matters. The first three parts establish the shell and connector patterns. Part 4 gives the app its real business data layer. Part 5 starts orchestration from the UI. After that, Copilot, external URL calls, and ALM become natural extensions instead of isolated demos.
+
 ## Project Principles
 
 - keep the code simple enough for viewers to follow;
@@ -123,4 +146,4 @@ This structure is deliberate: it keeps the teaching story clear and makes each n
 
 ## Next Milestone
 
-The next major step is replacing mocked ticket, customer, and task data with real Dataverse Web API calls while keeping the current UI intact.
+The next major step is Part 4: replacing mocked ticket, customer, and task data with Dataverse while keeping the current UI intact and the code easy to explain in the series.

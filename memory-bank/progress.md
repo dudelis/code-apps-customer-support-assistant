@@ -4,6 +4,7 @@
 
 - Project conventions and instructions documented (`CLAUDE.md`, `.github/copilot-instructions.md`)
 - Memory bank created
+- Root `README.md` rewritten to describe the project as a live series with Parts 1-3 complete, Part 4 in preparation, and later plans for Copilot, external URLs/APIs, and ALM
 - Part 4 Dataverse implementation prompt shortened to rely on repo context instead of repeating setup and architectural background
 - Part 1 prerequisites document explains local setup
 - **Code App scaffolded and deployed** — `app/` folder with React + TypeScript + Vite + Fluent UI v9
@@ -17,17 +18,23 @@
 ## What Is Left to Build
 
 - [ ] Dataverse service — replace `src/data/*.ts` mock modules with real Web API calls
-- [ ] Power Automate flow — create / update tickets
-- [ ] Copilot Studio chat interface
+- [ ] Power Automate flow — start the flow from the app
+- [ ] Copilot assistance
+- [ ] External URL / API integration
 - [ ] ALM setup — solution, pipelines, environments
 
 ## Series Part Status
 
-| Part                              | Status         |
-| --------------------------------- | -------------- |
-| 1 — Scaffold + UI shell           | ✅ Complete    |
-| 2 — Dataverse                     | ⬜ Not started |
-| 3 — M365 User + Calendar          | ✅ Complete    |
-| 4 — Power Automate flows          | ⬜ Not started |
-| 5 — Copilot Studio                | ⬜ Not started |
-| 6 — ALM                           | ⬜ Not started |
+| Part                               | Status            |
+| ---------------------------------- | ----------------- |
+| 1 — Dev environment setup          | ✅ Complete       |
+| 2 — Scaffolding the app            | ✅ Complete       |
+| 3 — Adding connectors              | ✅ Complete       |
+| 4 — Adding Dataverse               | 🚧 In preparation |
+| 5 — Starting the flow from the app | ⬜ Not started    |
+
+## Planned After The Core Series
+
+- Copilot assistance
+- External URL / API integration
+- ALM and environment movement guidance
