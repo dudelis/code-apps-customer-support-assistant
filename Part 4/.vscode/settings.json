@@ -1,0 +1,5 @@
+{
+  "search.exclude": {
+    "Part */": true
+  }
+}

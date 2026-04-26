@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git --version)",
+      "Bash(pac)",
+      "Bash(npm list *)",
+      "Bash(dotnet --version)",
+      "Bash(az --version)",
+      "Bash(python -c \"import pandas; print\\('pandas OK'\\)\")",
+      "Bash(python -c \"import azure.identity; print\\('azure-identity OK'\\)\")",
+      "Bash(python -c \"import requests; print\\('requests OK'\\)\")",
+      "Bash(npm run *)"
+    ]
+  }
+}
