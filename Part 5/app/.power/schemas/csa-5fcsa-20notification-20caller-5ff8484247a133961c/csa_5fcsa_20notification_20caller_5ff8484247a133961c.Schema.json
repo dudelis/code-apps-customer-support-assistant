@@ -1,0 +1,170 @@
+{
+  "name": "shared_csa-5fcsa-20notification-20caller-5ff8484247a133961c",
+  "id": "/providers/Microsoft.PowerApps/apis/shared_csa-5fcsa-20notification-20caller-5ff8484247a133961c",
+  "type": "Microsoft.PowerApps/apis",
+  "properties": {
+    "xrmConnectorId": "7c076133-3bd3-4c45-ba63-584bc654c2d5",
+    "displayName": "CSA Notification Caller",
+    "iconUri": "https://defaulticons.powerapps.com/defaulticons/api-dedicated.png",
+    "iconBrandColor": "#007ee5",
+    "contact": {},
+    "license": {},
+    "apiEnvironment": "Shared",
+    "isCustomApi": true,
+    "blobUrisAreProxied": false,
+    "connectionParameters": {},
+    "swagger": {
+      "swagger": "2.0",
+      "info": {
+        "title": "Default title",
+        "description": "",
+        "version": "1.0"
+      },
+      "host": "7edee57a-8151-e291-9c30-d0418c88af4d.06.custom.europe002.azure-apihub.net",
+      "basePath": "/apim/csa-5fcsa-20notification-20caller-5ff8484247a133961c",
+      "schemes": [
+        "https",
+        "http"
+      ],
+      "consumes": [
+        "application/json"
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "paths": {
+        "/{connectionId}/invoke": {
+          "post": {
+            "summary": "Invoke the flow",
+            "operationId": "InvokeFlow",
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "api-version",
+                "in": "query",
+                "required": true,
+                "type": "string",
+                "default": "1"
+              },
+              {
+                "in": "body",
+                "name": "body",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ticketId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ticketId"
+                  ]
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "security": [
+        {
+          "oauth2-auth": [
+            "https://service.flow.microsoft.com//.default"
+          ]
+        }
+      ],
+      "securityDefinitions": {
+        "oauth2-auth": {
+          "type": "oauth2",
+          "flow": "accessCode",
+          "tokenUrl": "https://login.windows.net/common/oauth2/authorize",
+          "scopes": {
+            "https://service.flow.microsoft.com//.default": "https://service.flow.microsoft.com//.default"
+          },
+          "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+      }
+    },
+    "runtimeUrls": [
+      "https://7edee57a-8151-e291-9c30-d0418c88af4d.06.custom.europe002.azure-apihub.net/apim/csa-5fcsa-20notification-20caller-5ff8484247a133961c",
+      "http://7edee57a-8151-e291-9c30-d0418c88af4d.06.custom.europe002.azure-apihub.net/apim/csa-5fcsa-20notification-20caller-5ff8484247a133961c"
+    ],
+    "primaryRuntimeUrl": "https://7edee57a-8151-e291-9c30-d0418c88af4d.06.custom.europe002.azure-apihub.net/apim/csa-5fcsa-20notification-20caller-5ff8484247a133961c",
+    "doNotUseApiHubNetRuntimeUrl": "https://7edee57a-8151-e291-9c30-d0418c88af4d.06.custom.europe002.azure-apihub.net/apim/csa-5fcsa-20notification-20caller-5ff8484247a133961c",
+    "metadata": {
+      "source": "powerapps-user-defined",
+      "brandColor": "#007ee5",
+      "contact": {},
+      "license": {},
+      "publisherUrl": null,
+      "serviceUrl": null,
+      "documentationUrl": null,
+      "environmentName": "7edee57a-8151-e291-9c30-d0418c88af4d",
+      "xrmConnectorId": "7c076133-3bd3-4c45-ba63-584bc654c2d5",
+      "almMode": "Solution",
+      "parameters": {},
+      "useNewApimVersion": "True",
+      "createdBy": "{\"id\":\"95e24379-3102-4028-bfda-ecc54d92b9c9\",\"displayName\":\"Darth Sidious\",\"email\":\"Darth.Sidious@fallenorder.onmicrosoft.com\",\"type\":\"User\",\"tenantId\":\"1e7886bb-4ad8-4924-b559-29c5f5fea8f5\",\"userPrincipalName\":\"Darth.Sidious@fallenorder.onmicrosoft.com\"}",
+      "modifiedBy": "{\"id\":\"95e24379-3102-4028-bfda-ecc54d92b9c9\",\"displayName\":\"Darth Sidious\",\"email\":\"Darth.Sidious@fallenorder.onmicrosoft.com\",\"type\":\"User\",\"tenantId\":\"1e7886bb-4ad8-4924-b559-29c5f5fea8f5\",\"userPrincipalName\":\"Darth.Sidious@fallenorder.onmicrosoft.com\"}",
+      "allowSharing": false,
+      "rateLimit": 0
+    },
+    "capabilities": [],
+    "description": "",
+    "apiDefinitions": {
+      "originalSwaggerUrl": "https://eur002002neuext.blob.core.windows.net/api-swagger-files/europe-002/csa-5fcsa-20notification-20caller-5ff8484247a133961c.json_original?skoid=a18ce847-5bbf-4179-b6dd-1aa1cb321bd0&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skt=2026-05-02T18%3A06%3A37Z&ske=2026-05-03T18%3A06%3A37Z&sks=b&skv=2025-01-05&sv=2025-01-05&spr=https&se=2026-05-03T17%3A16%3A14Z&sr=b&sp=r&sig=BfyPMql37xiYpWQla0ux12BaXs2yfOvEM8gIpNISANM%3D",
+      "modifiedSwaggerUrl": "https://eur002002neuext.blob.core.windows.net/api-swagger-files/europe-002/csa-5fcsa-20notification-20caller-5ff8484247a133961c.json?skoid=a18ce847-5bbf-4179-b6dd-1aa1cb321bd0&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skt=2026-05-02T18%3A06%3A37Z&ske=2026-05-03T18%3A06%3A37Z&sks=b&skv=2025-01-05&sv=2025-01-05&spr=https&se=2026-05-03T17%3A16%3A14Z&sr=b&sp=r&sig=GPce0pGSQs5mgTn%2BSWFCnv79j%2BJIfUmEecjCNEOXE%2Fw%3D"
+    },
+    "policyTemplateInstances": [],
+    "backendService": {
+      "serviceUrl": "https://7edee57a8151e2919c30d0418c88af.4d.environment.api.powerplatform.com/powerautomate/automations/direct/workflows/11c3e538b0de41edbebeaa512e7b7782/triggers/manual/path"
+    },
+    "createdBy": {
+      "id": "95e24379-3102-4028-bfda-ecc54d92b9c9",
+      "displayName": "Darth Sidious",
+      "email": "Darth.Sidious@fallenorder.onmicrosoft.com",
+      "type": "User",
+      "tenantId": "1e7886bb-4ad8-4924-b559-29c5f5fea8f5",
+      "userPrincipalName": "Darth.Sidious@fallenorder.onmicrosoft.com"
+    },
+    "modifiedBy": {
+      "id": "95e24379-3102-4028-bfda-ecc54d92b9c9",
+      "displayName": "Darth Sidious",
+      "email": "Darth.Sidious@fallenorder.onmicrosoft.com",
+      "type": "User",
+      "tenantId": "1e7886bb-4ad8-4924-b559-29c5f5fea8f5",
+      "userPrincipalName": "Darth.Sidious@fallenorder.onmicrosoft.com"
+    },
+    "createdTime": "2026-05-03T16:00:53.3614375Z",
+    "changedTime": "2026-05-03T16:04:23.3259853Z",
+    "environment": {
+      "id": "/providers/Microsoft.PowerApps/environments/7edee57a-8151-e291-9c30-d0418c88af4d",
+      "name": "7edee57a-8151-e291-9c30-d0418c88af4d"
+    },
+    "tier": "Standard",
+    "publisher": "Darth Sidious",
+    "almMode": "Solution",
+    "parameters": {},
+    "rateLimit": 0,
+    "apiVersion": "None"
+  }
+}

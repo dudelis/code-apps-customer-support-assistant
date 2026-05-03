@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "appId": "69c0e8b7-b853-43be-ae6c-61164c57bb12",
+  "appDisplayName": "Customer Support Assistant",
+  "region": "prod",
+  "environmentId": "7edee57a-8151-e291-9c30-d0418c88af4d",
+  "description": " ",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {
+    "cbea09a2-b006-4c86-a93d-6cba151ffb5b": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_office365users",
+      "displayName": "Office 365 Users",
+      "dataSources": [
+        "office365users"
+      ],
+      "dataSets": {}
+    },
+    "2e8c6d9b-7621-4d34-8348-7b14addef3e5": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_office365",
+      "displayName": "Office 365 Outlook",
+      "dataSources": [
+        "office365"
+      ],
+      "dataSets": {}
+    },
+    "f4a2c5e6-2477-4649-ad9c-6ae4dfce3d3c": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
+      "displayName": "Logic flows",
+      "dataSources": [
+        "csanotification"
+      ],
+      "workflowDetails": {
+        "workflowEntityId": "a99817f2-d946-f111-bec7-7ced8d90cbe1",
+        "workflowDisplayName": "CSA Notification",
+        "workflowName": "0f031377-4c37-6d0f-1001-759fbaed81b3",
+        "dependencies": {
+          "shared_office365": "2e8c6d9b-7621-4d34-8348-7b14addef3e5"
+        }
+      }
+    },
+    "70407b8c-3c86-4d8a-a6e1-51ef454027b9": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_csa-5fcsa-20notification-20caller-5ff8484247a133961c",
+      "displayName": "CSA Notification Caller",
+      "dataSources": [
+        "csa_5fcsa_20notification_20caller_5ff8484247a133961c"
+      ],
+      "dataSets": {}
+    }
+  },
+  "databaseReferences": {
+    "default.cds": {
+      "dataSources": {
+        "customers": {
+          "entitySetName": "csa_customers",
+          "logicalName": "csa_customer"
+        },
+        "tickets": {
+          "entitySetName": "csa_tickets",
+          "logicalName": "csa_ticket"
+        },
+        "tasks": {
+          "entitySetName": "csa_tasks",
+          "logicalName": "csa_task"
+        }
+      },
+      "environmentVariableName": ""
+    }
+  }
+}
