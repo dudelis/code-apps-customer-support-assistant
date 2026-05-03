@@ -18,19 +18,22 @@ Part 4 is complete. Dataverse is the data layer for all three business tables. F
 - New: `NewTicketDialog.tsx` — form for title, priority, customer, summary
 - New: `NewCustomerDialog.tsx` — form for name, company, role, email
 - Deployed as v1.1.0
+- Split the Part 5 preparation into two staged prompts
+  - `preparation/part-5-flows-1-add-flow.md` covers adding the flow and creating the service wrapper
+  - `preparation/part-5-flows-2-wire-ui.md` covers wiring the flow into the ticket overlay UI
 
 ## Next Steps
 
-1. Part 5 — trigger a Power Automate flow from the app (`src/services/flows.ts`)
+1. Part 5 — first add the Power Automate flow, then wire it into the app (`src/services/flows.ts` and `TicketOverlay`)
 2. After Part 5, extend with Copilot Studio integration
 3. Later: external URL/API calls, ALM setup
 
 ## Open Decisions
 
-| Decision               | Options                                           | Status                                                |
-| ---------------------- | ------------------------------------------------- | ----------------------------------------------------- |
-| Routing                | React Router vs simple state-based view switching | Still state-based; working well                       |
-| Error feedback on mutations | Silent fail vs toast notification           | Currently silent (optimistic for updates); revisit for Part 5 |
+| Decision                    | Options                                           | Status                                                        |
+| --------------------------- | ------------------------------------------------- | ------------------------------------------------------------- |
+| Routing                     | React Router vs simple state-based view switching | Still state-based; working well                               |
+| Error feedback on mutations | Silent fail vs toast notification                 | Currently silent (optimistic for updates); revisit for Part 5 |
 
 ## Known Limitations
 

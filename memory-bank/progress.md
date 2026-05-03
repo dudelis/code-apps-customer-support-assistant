@@ -26,14 +26,19 @@
 - [ ] External URL / API integration
 - [ ] ALM setup — solution, pipelines, environments
 
+## Current Prep State
+
+- [x] Part 5 preparation split into `preparation/part-5-flows-1-add-flow.md` and `preparation/part-5-flows-2-wire-ui.md`
+- [x] Flow integration prerequisites captured: use `npx power-apps` commands and `@microsoft/power-apps` `1.1.1+`
+
 ## Series Part Status
 
-| Part                               | Status      |
-| ---------------------------------- | ----------- |
-| 1 — Dev environment setup          | ✅ Complete |
-| 2 — Scaffolding the app            | ✅ Complete |
-| 3 — Adding connectors              | ✅ Complete |
-| 4 — Adding Dataverse               | ✅ Complete |
+| Part                               | Status         |
+| ---------------------------------- | -------------- |
+| 1 — Dev environment setup          | ✅ Complete    |
+| 2 — Scaffolding the app            | ✅ Complete    |
+| 3 — Adding connectors              | ✅ Complete    |
+| 4 — Adding Dataverse               | ✅ Complete    |
 | 5 — Starting the flow from the app | ⬜ Not started |
 
 ## Planned After The Core Series
