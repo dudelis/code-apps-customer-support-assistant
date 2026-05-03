@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { makeStyles, tokens, Text, Button, Spinner } from '@fluentui/react-components';
 import { useTickets } from '../../hooks/useTickets';
 import { useTicketOverlay } from '../../hooks/useTicketOverlay';
@@ -8,6 +9,9 @@ import { TicketActivityTab } from './TicketActivityTab';
 import { TicketMessagesTab } from './TicketMessagesTab';
 import { TicketCustomerInfoTab } from './TicketCustomerInfoTab';
 import { StatusProgressionBar } from './StatusProgressionBar';
+import { sendNotification, invokeTicketEmail } from '../../services/flows';
+
+const EMAIL_BANNER_DURATION_MS = 5000;
 
 const TABS: { id: OverlayTab; label: string }[] = [
   { id: 'summary', label: 'Summary' },
@@ -84,12 +88,42 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  banner: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '12px',
+    padding: '10px 32px',
+    background: 'rgba(34, 197, 94, 0.12)',
+    borderBottom: '1px solid rgba(34, 197, 94, 0.3)',
+    color: '#4ade80',
+  },
+  bannerMessage: {
+    flex: '1',
+  },
+  bannerDismiss: {
+    flexShrink: '0',
+    minWidth: 'unset',
+    padding: '0 6px',
+    color: '#4ade80',
+    opacity: '0.7',
+    ':hover': { opacity: '1' },
+  },
 });
 
 export function TicketOverlay() {
   const styles = useStyles();
   const { isOpen, ticketId, activeTab, setTab, closeOverlay } = useTicketOverlay();
   const { all, isLoading, updateStatus, deleteTicket } = useTickets();
+  const [flowMessage, setFlowMessage] = useState<string | null>(null);
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+  const [isHttpTriggering, setIsHttpTriggering] = useState(false);
+
+  useEffect(() => {
+    if (!flowMessage) return;
+    const timer = setTimeout(() => setFlowMessage(null), EMAIL_BANNER_DURATION_MS);
+    return () => clearTimeout(timer);
+  }, [flowMessage]);
 
   if (!isOpen || !ticketId) return null;
 
@@ -99,6 +133,32 @@ export function TicketOverlay() {
     if (!ticket) return;
     await deleteTicket(ticket.id);
     closeOverlay();
+  };
+
+  const handleSendEmail = async () => {
+    if (!ticket) return;
+    setIsSendingEmail(true);
+    try {
+      const result = await sendNotification({ text: ticket.id });
+      setFlowMessage(result.message || 'Email sent successfully.');
+    } catch (err) {
+      setFlowMessage(err instanceof Error ? err.message : 'Failed to send email.');
+    } finally {
+      setIsSendingEmail(false);
+    }
+  };
+
+  const handleHttpTrigger = async () => {
+    if (!ticket) return;
+    setIsHttpTriggering(true);
+    try {
+      const result = await invokeTicketEmail(ticket.id);
+      setFlowMessage(result.message || 'HTTP trigger sent successfully.');
+    } catch (err) {
+      setFlowMessage(err instanceof Error ? err.message : 'HTTP trigger failed.');
+    } finally {
+      setIsHttpTriggering(false);
+    }
   };
 
   return (
@@ -122,6 +182,19 @@ export function TicketOverlay() {
                 </button>
               ))}
             </div>
+            {flowMessage && (
+              <div className={styles.banner}>
+                <Text size={300} className={styles.bannerMessage}>{flowMessage}</Text>
+                <Button
+                  appearance="transparent"
+                  size="small"
+                  className={styles.bannerDismiss}
+                  onClick={() => setFlowMessage(null)}
+                >
+                  ✕
+                </Button>
+              </div>
+            )}
             <div className={styles.content}>
               {activeTab === 'summary' && <TicketSummaryTab ticket={ticket} />}
               {activeTab === 'activity' && <TicketActivityTab ticketId={ticket.id} />}
@@ -135,13 +208,31 @@ export function TicketOverlay() {
               />
               <div className={styles.footerActions}>
                 <Button appearance="subtle" onClick={closeOverlay}>← Back</Button>
-                <Button
-                  appearance="outline"
-                  style={{ color: '#ef4444', borderColor: 'rgba(239,68,68,0.4)' }}
-                  onClick={handleDelete}
-                >
-                  Delete Ticket
-                </Button>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <Button
+                    appearance="primary"
+                    disabled={isSendingEmail}
+                    icon={isSendingEmail ? <Spinner size="tiny" /> : undefined}
+                    onClick={handleSendEmail}
+                  >
+                    {isSendingEmail ? 'Sending…' : 'Send Email'}
+                  </Button>
+                  <Button
+                    appearance="secondary"
+                    disabled={isHttpTriggering}
+                    icon={isHttpTriggering ? <Spinner size="tiny" /> : undefined}
+                    onClick={handleHttpTrigger}
+                  >
+                    {isHttpTriggering ? 'Triggering…' : 'HTTP Trigger'}
+                  </Button>
+                  <Button
+                    appearance="outline"
+                    style={{ color: '#ef4444', borderColor: 'rgba(239,68,68,0.4)' }}
+                    onClick={handleDelete}
+                  >
+                    Delete Ticket
+                  </Button>
+                </div>
               </div>
             </div>
           </>

@@ -20,17 +20,16 @@ npm install        # install dependencies
 npm run dev        # start local dev server (Vite, port 5173)
 npm run build      # production build (tsc -b && vite build)
 npm run lint       # ESLint
-pac code push      # deploy to Power Apps
+npx power-apps push   # deploy to Power Apps (use instead of pac code push — supports workflowDetails)
 ```
 
-For Part 5 flow integration, use the npm-based Power Apps CLI commands from the `app/` folder:
+For flow and connector management, use the npm-based Power Apps CLI commands from the `app/` folder:
 
 ```bash
 npx power-apps list-flows
 npx power-apps add-flow --flow-id <flow-id>
+pac code add-data-source -a <api-name> -c <connection-id>
 ```
-
-These flow commands are not available through `pac code`.
 
 ## Versioning Rule
 
@@ -65,13 +64,15 @@ Both are set to `live` in the current `.env.local`. In mock mode, reads return `
 
 ## Connectors & Generated Services
 
-| Connector               | API name         | Connection ID                       | Generated service                                   |
-| ----------------------- | ---------------- | ----------------------------------- | --------------------------------------------------- |
-| Office 365 Users        | `office365users` | `shared-office365user-91d43677-...` | `src/generated/services/Office365UsersService.ts`   |
-| Office 365 Outlook      | `office365`      | `64b7342d44814b4e9e6237500a14d0fb`  | `src/generated/services/Office365OutlookService.ts` |
-| Dataverse csa_tickets   | —                | —                                   | `src/generated/services/Csa_ticketsService.ts`      |
-| Dataverse csa_customers | —                | —                                   | `src/generated/services/Csa_customersService.ts`    |
-| Dataverse csa_tasks     | —                | —                                   | `src/generated/services/Csa_tasksService.ts`        |
+| Connector                      | API name                                            | Connection ID                        | Generated service                                          |
+| ------------------------------ | --------------------------------------------------- | ------------------------------------ | ---------------------------------------------------------- |
+| Office 365 Users               | `office365users`                                    | `shared-office365user-91d43677-...`  | `src/generated/services/Office365UsersService.ts`          |
+| Office 365 Outlook             | `office365`                                         | `64b7342d44814b4e9e6237500a14d0fb`   | `src/generated/services/Office365OutlookService.ts`        |
+| Dataverse csa_tickets          | —                                                   | —                                    | `src/generated/services/Csa_ticketsService.ts`             |
+| Dataverse csa_customers        | —                                                   | —                                    | `src/generated/services/Csa_customersService.ts`           |
+| Dataverse csa_tasks            | —                                                   | —                                    | `src/generated/services/Csa_tasksService.ts`               |
+| CSA Notification (PA flow)     | `shared_logicflows` / `csanotification`             | `f4a2c5e6-2477-4649-ad9c-6ae4dfce3d3c` | `src/generated/services/CSANotificationService.ts`       |
+| CSA Notification Caller (custom) | `csa-5fcsa-20notification-20caller-5ff8484247a133961c` | `3abe8f19117743639524909daf2c28f8` | `src/generated/services/CSANotificationCallerService.ts` |
 
 ## Dataverse Schema (publisher: `csa`, solution: `Customer Support Assistant`)
 

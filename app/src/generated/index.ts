@@ -4,6 +4,8 @@
  */
 
 // Models
+export * as CSANotificationCallerModel from './models/CSANotificationCallerModel';
+export * as CSANotificationModel from './models/CSANotificationModel';
 export * as CommonModels from './models/CommonModels';
 export * as Csa_customersModel from './models/Csa_customersModel';
 export * as Csa_tasksModel from './models/Csa_tasksModel';
@@ -12,6 +14,8 @@ export * as Office365OutlookModel from './models/Office365OutlookModel';
 export * as Office365UsersModel from './models/Office365UsersModel';
 
 // Services
+export * from './services/CSANotificationCallerService';
+export * from './services/CSANotificationService';
 export * from './services/Csa_customersService';
 export * from './services/Csa_tasksService';
 export * from './services/Csa_ticketsService';

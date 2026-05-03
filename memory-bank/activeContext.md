@@ -2,7 +2,7 @@
 
 ## Current Focus
 
-Part 4 is complete. Dataverse is the data layer for all three business tables. Full CRUD is wired. The next step is Part 5: starting a Power Automate flow from the app.
+Part 5 is complete. The CSA Notification flow is registered, wrapped in `src/services/flows.ts`, and wired into the `TicketOverlay` UI. The next step is Copilot Studio integration (`src/services/copilot.ts`).
 
 ## Recent Changes
 
@@ -21,10 +21,13 @@ Part 4 is complete. Dataverse is the data layer for all three business tables. F
 - Split the Part 5 preparation into two staged prompts
   - `preparation/part-5-flows-1-add-flow.md` covers adding the flow and creating the service wrapper
   - `preparation/part-5-flows-2-wire-ui.md` covers wiring the flow into the ticket overlay UI
+- **Part 5 step 1**: upgraded `@microsoft/power-apps` to `1.1.1`; added CSA Notification flow via `npx power-apps add-flow`; generated `CSANotificationService.ts` + `CSANotificationModel.ts`; created `src/services/flows.ts` with `sendNotification()`
+- **Part 5 step 2**: wired `sendNotification` into `TicketOverlay` as **Send Email** button with auto-dismissing banner
+- **Part 5 step 3**: added CSA Notification Caller custom connector via `pac code add-data-source`; added `invokeTicketEmail()` to `flows.ts`; added **HTTP Trigger** button to `TicketOverlay`; fixed `api-version` query param to `'1'`; deployed as v1.1.4
 
 ## Next Steps
 
-1. Part 5 — first add the Power Automate flow, then wire it into the app (`src/services/flows.ts` and `TicketOverlay`)
+1. Part 6 — Copilot Studio integration (`src/services/copilot.ts`, Direct Line channel)
 2. After Part 5, extend with Copilot Studio integration
 3. Later: external URL/API calls, ALM setup
 

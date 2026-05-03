@@ -66,6 +66,7 @@ This means a single fetch, and mutations from any component (e.g. delete in over
 - Toggle mock vs live with env vars: `VITE_M365_MODE` (M365), `VITE_DATAVERSE_MODE` (Dataverse)
 - **Reads**: live calls generated services; mock returns `src/data/*` arrays
 - **Mutations**: live calls generated services; mock is a no-op (optimistic UI state persists for the session)
+- **Flow/connector calls** (`flows.ts`): always live — no mock toggle needed (Power Apps provides the connection at runtime)
 - Errors propagate as thrown exceptions — hooks catch and expose them
 
 ```typescript

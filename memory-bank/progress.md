@@ -18,28 +18,29 @@
   - Customer create: New Customer dialog (C); list view (R)
   - Task done toggle persists to Dataverse (U); task list (R)
   - Mock/live toggle via `VITE_DATAVERSE_MODE=live`
+- **Part 5** — Power Automate flow + custom connector integration (v1.1.1 → v1.1.4):
+  - Upgraded `@microsoft/power-apps` to `1.1.1`
+  - Added CSA Notification flow via `npx power-apps add-flow`; generated `CSANotificationService.ts` + `CSANotificationModel.ts`
+  - Added CSA Notification Caller custom connector via `pac code add-data-source`; generated `CSANotificationCallerService.ts`
+  - `src/services/flows.ts` — `sendNotification()` (PA flow connector) and `invokeTicketEmail()` (custom connector, passes `ticketId`, `api-version: 1`)
+  - `TicketOverlay` — **Send Email** button calls PA flow; **HTTP Trigger** button calls custom connector; banner shows returned message; auto-hides after 5 s; dismissible; buttons independently disabled while in-flight
 
 ## What Is Left to Build
 
-- [ ] Part 5 — Power Automate flow: trigger HTTP flow from the app (`src/services/flows.ts`)
-- [ ] Copilot Studio integration (`src/services/copilot.ts`)
+- [ ] Part 6 — Copilot Studio integration (`src/services/copilot.ts`)
 - [ ] External URL / API integration
 - [ ] ALM setup — solution, pipelines, environments
 
-## Current Prep State
-
-- [x] Part 5 preparation split into `preparation/part-5-flows-1-add-flow.md` and `preparation/part-5-flows-2-wire-ui.md`
-- [x] Flow integration prerequisites captured: use `npx power-apps` commands and `@microsoft/power-apps` `1.1.1+`
-
 ## Series Part Status
 
-| Part                               | Status         |
-| ---------------------------------- | -------------- |
-| 1 — Dev environment setup          | ✅ Complete    |
-| 2 — Scaffolding the app            | ✅ Complete    |
-| 3 — Adding connectors              | ✅ Complete    |
-| 4 — Adding Dataverse               | ✅ Complete    |
-| 5 — Starting the flow from the app | ⬜ Not started |
+| Part                               | Status      |
+| ---------------------------------- | ----------- |
+| 1 — Dev environment setup          | ✅ Complete |
+| 2 — Scaffolding the app            | ✅ Complete |
+| 3 — Adding connectors              | ✅ Complete |
+| 4 — Adding Dataverse               | ✅ Complete |
+| 5 — Power Automate flows           | ✅ Complete |
+| 6 — Copilot Studio                 | ⬜ Not started |
 
 ## Planned After The Core Series
 

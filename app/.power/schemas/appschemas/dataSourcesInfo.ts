@@ -5,6 +5,43 @@
  */
 
 export const dataSourcesInfo = {
+  "csa_5fcsa_20notification_20caller_5ff8484247a133961c": {
+    "tableId": "",
+    "version": "",
+    "primaryKey": "",
+    "dataSourceType": "Connector",
+    "apis": {
+      "InvokeFlow": {
+        "path": "/{connectionId}/invoke",
+        "method": "POST",
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "object"
+          }
+        ],
+        "responseInfo": {
+          "200": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  },
   "csa_customers": {
     "tableId": "",
     "version": "",
@@ -25,6 +62,46 @@ export const dataSourcesInfo = {
     "primaryKey": "csa_ticketid",
     "dataSourceType": "Dataverse",
     "apis": {}
+  },
+  "csanotification": {
+    "tableId": "",
+    "version": "",
+    "primaryKey": "",
+    "dataSourceType": "Connector",
+    "apis": {
+      "Run": {
+        "path": "/{connectionId}/triggers/manual/run",
+        "method": "POST",
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "type": "object"
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responseInfo": {
+          "200": {
+            "type": "object"
+          },
+          "default": {
+            "type": "object"
+          }
+        }
+      }
+    }
   },
   "office365": {
     "tableId": "",
